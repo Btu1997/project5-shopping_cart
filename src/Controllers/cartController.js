@@ -2,7 +2,7 @@ const { isValidObjectId } = require("mongoose");
 const cartModel = require("../Models/cartModel");
 const productModel = require("../Models/productModel");
 const userModel = require("../Models/userModel");
-const { isValid, keyValid, objectIdValid } = require("../Validator/validation");
+const { isValid, keyValid } = require("../Validator/validation");
 
 
 async function addToCart(req, res) {
@@ -89,7 +89,7 @@ const cartUpdate = async function (req, res) {
 
         const decodedToken = req.decodedToken
 
-        if (!objectIdValid(userId)) return res.status(400).send({ status: false, message: 'userId is not valid' })
+        if (!isValidObjectId(userId)) return res.status(400).send({ status: false, message: 'userId is not valid' })
 
         let user = await userModel.findById(userId)
 
@@ -101,7 +101,7 @@ const cartUpdate = async function (req, res) {
 
         if (!keyValid(body)) return res.status(400).send({ status: false, message: "Please provide data to Remove product or decrement the quantity" })
 
-        if (!objectIdValid(productId)) { return res.status(400).send({ status: false, msg: "Invalid productId" }) }
+        if (!isValidObjectId(productId)) { return res.status(400).send({ status: false, msg: "Invalid productId" }) }
 
         let productDetails = await productModel.findOne({ _id: productId, isDeleted: false })
 
@@ -111,7 +111,7 @@ const cartUpdate = async function (req, res) {
 
         if (!productCart) return res.status(400).send({ status: false, message: `No product Exist in cart with given productId ${productId}` })
 
-        if (!objectIdValid(cartId)) { return res.status(400).send({ status: false, msg: "Invalid cartId" }) }
+        if (!isValidObjectId(cartId)) { return res.status(400).send({ status: false, msg: "Invalid cartId" }) }
 
         let cartDetails = await cartModel.findOne({ userId })
 

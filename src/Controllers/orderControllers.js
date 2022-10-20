@@ -77,6 +77,7 @@ exports.createOrder = async function (req, res) {
 }
 
 
+
 exports.updateOrder = async function (req, res) {
     try {
         const userId = req.params.userId;
@@ -185,6 +186,3 @@ exports.updateOrder = async function (req, res) {
         return res.status(500).send({ status: false, message: error.message })
     }
 }
-
-
-// module.exports = { createOrder, updateOrder };

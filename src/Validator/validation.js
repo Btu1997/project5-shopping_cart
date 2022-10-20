@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+
 const isValid = function (value) {
   if (typeof value === 'undefined' || value === null) return false
   if (typeof value === 'string' && value.trim().length === 0) return false
@@ -29,13 +29,10 @@ const keyValid = function (value) {
   return false;
 };
 
-const objectIdValid = function (value) {
-  return mongoose.Types.ObjectId.isValid(value);
-};
 
 const priceValid = function (value) {
   const number = /^(?:0|[1-9]\d*)(?:\.(?!.*000)\d+)?$/
   return number.test(value)
 }
 
-module.exports = { isValid, priceValid, isValidName, isvalidEmail, isvalidMobile, isValidPassword, pincodeValid, keyValid, validString, objectIdValid }
+module.exports = { isValid, priceValid, isValidName, isvalidEmail, isvalidMobile, isValidPassword, pincodeValid, keyValid, validString }

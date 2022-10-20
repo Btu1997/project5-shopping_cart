@@ -7,10 +7,6 @@ const { createProduct, getProducts, getProductById, updateProduct, deleteProduct
 const { addToCart, cartUpdate, getCartDetails, deleteCart } = require('../Controllers/cartController')
 const { createOrder, updateOrder } = require('../Controllers/orderControllers')
 
-router.get("/test", function (req, res) {
-    return res.send({ data: "This to test" })
-})
-
 // for users route=============================>
 
 router.post("/register", createUser)
